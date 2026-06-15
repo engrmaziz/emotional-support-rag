@@ -79,7 +79,7 @@ This project implements a decoupled frontend/backend microservice architecture.
 graph TD
     UI[Streamlit UI] -->|User Message + History| API(FastAPI Endpoint)
     
-    subgraph 🛡️ Security Firewall
+    subgraph Firewall [🛡️ Security Firewall]
     API --> PII{Microsoft Presidio NER}
     PII -->|Redacts PII locally| GUARD[Llama 3.1 8B Guard Model]
     end
@@ -87,7 +87,7 @@ graph TD
     GUARD -->|Classifies Unsafe| REJECT[Halt Request & Return Static Safe Response]
     GUARD -->|Classifies Safe| RAG[(ChromaDB Vector Store)]
     
-    subgraph 🧠 Generative Engine
+    subgraph Engine [🧠 Generative Engine]
     RAG -->|Retrieves CBT Context| PROMPT[LangChain Prompt Synthesis]
     PROMPT -->|Context + Safe Message + Memory| LLM[Llama 3.3 70B Model via Groq]
     end
@@ -198,6 +198,3 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 This project is [MIT](https://opensource.org/licenses/MIT) licensed.
 
-```
-
-```
