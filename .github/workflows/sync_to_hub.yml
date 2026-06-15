@@ -1,0 +1,23 @@
+name: Sync to Hugging Face Hub
+
+# This tells GitHub to run this script every time you push to the 'main' branch
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      
+      - name: Push code to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        # REPLACE 'your-hf-username' and 'your-space-name' BELOW!
+        run: git push --force https://EngrAhmedRehan:$HF_TOKEN@huggingface.co/spaces/EngrAhmedRehan/secure-ai-backend main

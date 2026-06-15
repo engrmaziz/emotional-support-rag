@@ -1,0 +1,4 @@
+pycache/
+.envchroma_db/
+chroma_db/
+.env
