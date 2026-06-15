@@ -158,13 +158,15 @@ Run the backend and frontend simultaneously in separate terminals.
 
 ---
 
-## 🌐 Cloud Deployment Architecture
+## 🌐 Cloud Deployment & CI/CD Architecture
 
-The application is deployed across two PaaS providers to maintain a $0 overhead while ensuring scalability:
+The application is deployed across two free PaaS providers, utilizing a modern CI/CD pipeline for automated builds:
 
-* **Backend:** Hosted on **Render.com** (Dockerized Python Web Service)
-* **Frontend:** Hosted on **Streamlit Community Cloud**
-* *Note on Cold Starts:* Due to free-tier compute limitations, the FastAPI backend will hibernate after 15 minutes of inactivity. The first request may take ~50 seconds to spin up the container.
+* **Backend:** Hosted on **Hugging Face Spaces** utilizing a custom `Dockerfile` environment.
+* **Frontend:** Hosted on **Streamlit Community Cloud**.
+* **Automated CI/CD (GitHub Actions):** The repository includes a GitHub Actions workflow (`sync_to_hub.yml`) that securely and automatically syncs the `main` branch to Hugging Face on every commit.
+* **Dynamic Docker Builds:** To bypass Git large-file limits and adhere to production best practices, the heavy ChromaDB vector database is NOT pushed to the repository. Instead, the `Dockerfile` executes `python ingest.py` during the cloud build phase to download datasets and compile the vector embeddings dynamically on Hugging Face's servers.
+* *Note on Cold Starts:* Hugging Face Spaces on the free tier may pause after prolonged inactivity. The first request might take a few moments to wake the container.
 
 ---
 
@@ -185,13 +187,17 @@ Built by **Musharraf Aziz**
 *AI/ML Engineer & Full-Stack Developer passionate about secure, scalable, and impactful AI systems.*
 
 > **Disclaimer:** This AI is a demonstration of engineering concepts and RAG architecture. It is not a replacement for professional medical advice, diagnosis, or therapy.
+
 ---
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://www.google.com/search?q=https://github.com/engrmaziz/emotional-support-rag/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/engrmaziz/emotional-support-rag/issues).
 
 ## 📝 License
 
 This project is [MIT](https://opensource.org/licenses/MIT) licensed.
 
+```
+
+```
