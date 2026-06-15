@@ -1,9 +1,17 @@
 fastapi
 uvicorn
 streamlit
+requests
 langchain
 langchain-groq
 langchain-community
+langchain-chroma
+langchain-huggingface
 chromadb
 sentence-transformers
 python-dotenv
+datasets
+pandas
+presidio-analyzer
+presidio-anonymizer
+spacy
