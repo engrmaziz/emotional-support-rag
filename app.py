@@ -27,7 +27,7 @@ if prompt := st.chat_input("How are you feeling today?"):
         # Show a loading spinner while waiting for the API
         with st.spinner("Thinking..."):
             response = requests.post(
-                "http://127.0.0.1:8000/chat", 
+                "https://engrahmedrehan-secure-ai-backend.hf.space/chat", 
                 json={
                     "message": prompt,
                     "history": history_to_send 
